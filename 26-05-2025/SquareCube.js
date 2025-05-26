@@ -1,0 +1,1 @@
+const squarecube = no => ({square:no**2,cube:no**3})
