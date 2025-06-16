@@ -1,13 +1,11 @@
-var age=21;
-function displayAge (){
-    console.log("age:",age)
-}
 
-function changeAge (){
-    age=age+1
-    console.log("updated age:",age)
+let age=12
+function displayAge(){
+    console.log("before change age",age)
+    function changeAge(){
+      age =13
+      console.log("changed age",age)
+    }
+  changeAge()
 }
-
 displayAge()
-changeAge()
-
