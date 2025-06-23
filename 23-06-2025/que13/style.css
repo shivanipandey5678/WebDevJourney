@@ -1,0 +1,50 @@
+*{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  
+}
+
+main{
+    width: 60%;
+    height: 80%;
+    margin:0px  auto ;
+    border: 3px solid black;
+    padding:  30px 40px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    
+}
+#main-heading,h2{
+    text-decoration: underline;
+}
+
+body{
+  background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0') ;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#Contact{
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 30%;
+}
+
+#inner_Contact{
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 100%;
+ 
+}
+#inner_Contact input{
+  padding: 2px 0px;
+  border-radius: 5px;
+}
+input[type='submit']{
+  padding: 5px 5px;
+  border-radius: 5px;
+}
