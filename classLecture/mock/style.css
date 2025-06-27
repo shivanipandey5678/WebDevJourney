@@ -1,0 +1,74 @@
+/* .card{
+    width: 7%;
+    height: 200px;
+    border: 1px solid red;
+    display: inline-block;
+    
+}
+.card1{
+    width: 20%;
+    height: 200px;
+    border: 1px solid red;
+    display: inline-block;
+}
+main{
+    border: 1px solid black;
+} */
+
+/* //above one is task of first  */
+
+#center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:50%;
+    width: 100px;
+    height: 100px;
+   background-color: aqua;
+    top: 45%;
+    left: 45%;
+   
+    position: absolute;
+
+}
+#main{
+  width: 500px;
+  height:500px;
+  background-color: rgba(0, 255, 255, 0.276);
+  position: relative;
+  margin: auto;
+  
+  
+}
+
+.box{
+    width: 70px;
+    height: 70px;
+    background-color: green;
+    border: 1px solid black;
+    border-radius: 10px;
+    position: absolute;
+
+}
+
+#first{
+    top: 0;
+    left:47%
+
+}
+
+#fifth{
+    bottom: 0;
+    left:47%
+}
+
+#second{
+   top:10%;
+   left:19%
+}
+
+#eighth{
+    top:10%;
+    right:19%
+
+}

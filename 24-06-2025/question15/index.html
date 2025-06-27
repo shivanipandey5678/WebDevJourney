@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my protfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+
+        <header>
+            <h1 class="heading">Welcome to My <span>Portfolio</span> </h1>
+    <nav>
+        <ul>
+            <a href="#About">About</a>
+            <a href="#PROJECT">Project</a>
+            <a href="#contact">Contact</a>
+           
+        </ul>
+        
+    </nav>
+        
+</header>
+
+<main>
+
+       
+    <section id="About">
+        <!-- ----------------------------ABOUT SECTION-------------------------------- -->
+            <h2 class="heading">About Me</h2>
+            <div class="About" >
+
+                <img src="./Assets/dp (1).jpeg" alt="shivani-photo" id="my_photo" >
+                <p ><p>
+                    As a passionate MERN Stack Developer, I bring a solid foundation in React, Node.js, Express, MongoDB,
+                    and Tailwind CSS, all fueled by my unwavering commitment to lifelong learning. I thrive in collaborative
+                    environments, eagerly soaking up knowledge from others and constantly seeking new opportunities to grow my skills.
+                    With a strong grip on both frontend and backend technologies, I'm driven to continually refine my craft,
+                    explore new creative possibilities, and evolve into a better developer every day.
+                    <br><br>
+                    Currently, I'm working on multiple real-world projects that challenge me to build scalable and user-centric web applications.
+                    I am also diving deeper into DevOps practices like Docker and cloud deployment using AWS EC2. In parallel, I am learning system design,
+                    improving API security, and contributing to open-source projects. I'm also pursuing certifications in cloud computing and 
+                    application security to strengthen my technical profile. These experiences are not only enhancing my problem-solving skills,
+                    but also making me more confident in building full-stack, production-ready applications from scratch.
+                </p>
+                  
+                </p>
+            </div>
+        </section>
+
+           <!-- ---------------------------------PROJECTS--------------------------------- -->
+           <section id="PROJECT">
+               <h2 class="section_subtitle heading">Projects</h2>
+               <div class="projects">
+                <div class="project">
+                    <div class="project-img">
+                        <img src="./Assets/wanderlust.png" alt="Project Image">
+                    </div>
+                    <div class="project-details">
+                        <h3><span>Wanderlust </span>Full-Stack Project</h3>
+                        <p>Wanderlust is a full-stack travel booking application built using the MERN Stack. It allows users
+                            to browse, search, and filter various accommodations. The platform includes secure user
+                            authentication, authorization (only owners can edit/delete listings), review and rating systems,
+                            dynamic image uploading via Cloudinary, and a fully responsive UI. It follows the MVC
+                            architecture and real-time updates ensure a smooth user experience. The backend is connected
+                            with MongoDB Atlas and frontend and backend are fully deployed on Render.</p>
+                        <p><strong><span>Tech Stack:</span> </strong>Node.js, Express.js, MongoDB, Mapbox, Bootstrap 5,
+                            Cloudinary, EJS, JWT Authentication, Passport.js, Joi, Connect-Flash</p>
+                        <div class="project-buttons">
+                            <button class="btn">
+                                <a href="https://github.com/shivanipandey5678/wanderlust" target="_blank">GitHub Link</a>
+                            </button>
+                            <button class="btn">
+                                <a href="https://wanderlust-fszb.onrender.com/listings" target="_blank"
+                                    rel="noopener noreferrer">Live Demo</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+    
+    
+    
+                <div class="project">
+                    <div class="project-img">
+                        <img src="./Assets/prescripto.png" alt="Project Image">
+                    </div>
+                    <div class="project-details">
+                        <h3><span>Priscripto</span> | Appointment Booking System</h3>
+                        <p>Priscripto is a feature-rich full-stack web application designed for seamless appointment management. It provides dedicated portals for <strong>Users</strong>, <strong>Doctors</strong>, and <strong>Admins</strong>. Users can register, login, book appointments with doctors, and manage their bookings. Doctors can set available time slots, view upcoming appointments, and manage their schedules. Admins have access to oversee user and doctor activities, verify doctors, and manage the entire system. The application ensures secure authentication using JWT tokens and offers a smooth and responsive user experience across all devices. Real-time updates and robust backend APIs power the system, making it efficient and reliable.The project follows the <strong>MVC (Model-View-Controller)</strong> architectural pattern for better code organization and scalability.</p>
+                        
+                        <p><strong><span>Tech Stack:</span> </strong>MongoDB, Express.js, React.js, Node.js, Cloudinary, React Toastify, Tailwind CSS, Axios, JWT (JSON Web Tokens), Mongoose, Git & GitHub</p>
+                        <div class="project-buttons">
+                            <button class="btn"><a href="https://github.com/shivanipandey5678/Appointment-Booking-System"
+                                    target="_blank">GitHub link</a></button>
+                            <button class="btn"><a href="https://appointment-booking-system-frontend-vklj.onrender.com/"
+                                    target="_blank" rel="noopener noreferrer">User Portal Demo</a></button>
+                            <button class="btn"><a href="https://appointment-booking-system-qgsa.onrender.com/"
+                                    target="_blank" rel="noopener noreferrer">Doctor Portal Demo</a></button>
+                                </div>
+                        
+                            </div>
+                        </div>
+    
+                        
+               
+                        
+               
+               
+    
+    
+                    </div>
+         
+        </section>
+
+        <section id="contact">
+            <h2 class="heading">Contact</h2>
+            <form
+                action="https://formspree.io/f/movwydgb"
+                method="POST"
+                >
+                <div id="contact-form">
+                     <div class="inputfield">
+                    <label for="name"><b>Name  </b></label><br>&nbsp;&nbsp;
+                    <input type="text" id="name" name="name" placeholder="Your name" required >
+                    </div><br>
+                    
+                    <div class="inputfield"><label for="email"><b>Email </b></label><br>&nbsp;&nbsp;
+                        <input type="email" id="email" name="email" placeholder="Your email" required >
+                    </div><br>
+
+
+                    <div class="inputfield">
+                        <label for="message"> <b>Message  </b></label><br>&nbsp;&nbsp;
+                        <textarea id="message" name="message" placeholder="Your message" rows="5" required ></textarea>
+                
+                    </div><br>
+                    <button type="submit" class="btn">Submit</button>
+                </div>
+               
+                
+               
+                
+            </form>
+        </section>
+        
+    
+
+
+    </main>
+
+    <footer>
+        
+        <h3 class="end">Thank you for exploring my digital journey. Let's craft something extraordinary together!</h3>
+        <div class="social-media">
+            <span>you can follow me</span>
+            <button class="btn">
+                <a href="https://www.linkedin.com/in/shivani-pandey-029600288/" target="_blank">Linkedin</a>
+            </button>
+            <button class="btn">
+                <a href="https://github.com/shivanipandey5678" target="_blank">Github</a>
+            </button>
+            
+            
+        </div>
+        
+        
+        
+    </footer>
+</div>
+</body>
+</html>

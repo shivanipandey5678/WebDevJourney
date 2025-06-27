@@ -1,0 +1,169 @@
+
+* {
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+    color: white;
+}
+
+html {
+    scroll-behavior: smooth;
+  }
+  
+
+body {
+    background-color: #191919;
+    margin: 0;
+    padding: 0;
+    color:white
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    flex-basis: 75%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+ul a{
+    text-decoration: none;
+}
+
+#my_photo {
+    width: 230px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.projects{
+    display: flex;
+    flex-direction: column;
+}
+.project{
+    display: flex;
+    gap: 2%;
+    flex-direction: row;
+    align-items: center;
+}
+.project-img img{
+    width: 400px;
+    
+
+}
+.project-details{
+    width: 70%;
+}
+.heading{
+    text-align: center;
+    text-decoration: underline;
+}
+.heading:hover{
+    color: #f9004d;
+}
+
+.btn{
+    background-color: #f9004d;
+    box-shadow: 0 0 5px #000, 0 0 15px #858585;
+    font-weight: bold;
+    color: white;
+
+    padding: 8px 10px ;
+    border-radius: 8px;
+    border: none;
+    margin-right: 4px;
+    transition: transform 0.4s;
+}
+
+.btn a{
+    color: white;
+    text-decoration: none;
+}
+
+footer{
+    text-align: center;
+}
+
+span{
+    color: #f9004d;
+}
+
+
+.About{
+    display: flex;
+    gap: 2%;
+}
+
+#contact-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    
+    justify-content: center;
+    align-items: center;
+    padding: 4% 8%;
+  }
+
+#container{
+    margin: 2% 5%;
+}
+
+.inputfield{
+    display: flex;
+    align-items: center;
+    
+}
+input{
+     padding: 5px 10px;
+     border-radius: 5px;
+     background-color: rgb(230, 229, 229);
+     width: 40vw;
+     margin-right: 5px;
+     color: black;
+}
+
+textarea{
+    width: 40vw;
+    background-color: rgb(230, 229, 229);
+    border-radius: 5px;
+    color: black;
+}
+
+button[type=submit]{
+    width: 10vw;
+    padding: 0.8vw 1.2vw;
+}
+
+
+@media screen and (max-width: 768px) {
+    .project {
+        flex-direction: column;
+        align-items: center;
+        padding: 2vh 0;
+    }
+
+    .project-img img {
+        width: 80vw;
+     }
+
+     button[type=submit]{
+        width: 30vw;
+        padding: 1.6vw 1.8vw;
+    }
+
+   .About{
+    flex-direction: column;
+    margin: 1vw 10vw;
+   }
+   .About img{
+    width: 50vw;
+
+   }
+
+   
+}
+
+
+@media screen and (max-width: 768px) {
+    
+}
