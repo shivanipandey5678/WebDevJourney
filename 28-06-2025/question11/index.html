@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="first_heading">heading </h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum architecto vitae aliquam sed magnam culpa provident suscipit? Consequuntur, enim commodi quae amet ipsum rem optio repellendus eius asperiores aperiam illum?</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit, sunt harum aperiam adipisci iusto architecto dignissimos, reprehenderit modi ipsam doloribus sapiente quo placeat pariatur voluptatum a. Vero nam mollitia nobis!</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit error accusantium id ullam obcaecati omnis eum, ut modi ipsam quo enim temporibus minus deleniti. Accusantium hic aliquid illum libero totam.</p>
+
+    <div >div</div>
+</body>
+</html>
+<script>
+    let heading=document.getElementById("first_heading");
+    heading.textContent="welcome to dom world";
+    let allP=document.getElementsByTagName("p");
+    for(let el of allP){
+        el.style.color="pink"
+    }
+
+    let div=document.querySelector("div");
+    div.style.width="100px";
+    div.style.height="100px";
+    div.style.backgroundColor="yellow";
+    
+</script>
