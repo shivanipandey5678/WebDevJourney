@@ -22,8 +22,9 @@ colorChangebtn.addEventListener("click", () => {
     }else {
         alert('Please enter a color!');
     }
+})
 
-    
+
 
 
 
