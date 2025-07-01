@@ -1,0 +1,30 @@
+
+attribute node
+comment node
+text node
+element node
+
+
+class gives u js object which is like array but not actual array.returns html collection
+we can not use foreach,map and all over it.
+GetElementById, GetElementByClass, TagAllReturns, HTMLCollection, Button, QuerySelectAllReturns, NodeList NodeList is more like an array, we can only use for each on it, HTMLCollection we can't use any hof.
+
+dom update htmlcollection will update.
+same not for node list it will not update so it is static
+
+html collection have only element node.
+node collection have every node comment node,text node.
+dont give id again again use combinater in queryselector
+
+documnet.body.style.backgroundColor="pink"
+appendChile (append 1 child only)
+append(multiple)..
+document.querySelector('img').src="you can provide"
+document.querySelector('img').style.height="100px"
+when ever you are creating any img plz have a habit to append it inside div so that u can easily apply styling into it.
+
+//react notes
+npm create vite@latest my-app -- --template react
+cd my-app
+npm install
+npm run dev

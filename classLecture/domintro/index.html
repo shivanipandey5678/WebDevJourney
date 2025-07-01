@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+   
+<p id="para">hi</p>
+
+</body>
+</html>
+<script>
+
+    const parent = document.createElement("div");
+    const child1 = document.createElement("div");
+    const child2 = document.createElement("div");
+
+    parent.insertBefore(child2, child1); // ❌ ERROR: child1 is not in parent yet
+    
+    // Uncaught NotFoundError: Failed to execute 'insertBefore' on 'Node': The node before which the new node is to be inserted is not a child of this node.
+
+    const parentDiv=document.createElement("div");
+    parentDiv.id="parentDiv";
+    const p1=document.createElement("div");
+    const p2=document.createElement("div");
+    p1.innerText="p1 para1";
+    p2.innerText="p2 para2";
+    
+    parentDiv.append(p1)
+
+    //u have to insert the first one first.
+    // append child dont append text node
+    parentDiv.insertBefore(p2,p1)
+
+    document.body.append(parentDiv)
+    document.body.append("happy")
+    
+    document.querySelector("p")
+
+
+    const para=document.getElementById("para")
+    para.remove()
+
+</script>
