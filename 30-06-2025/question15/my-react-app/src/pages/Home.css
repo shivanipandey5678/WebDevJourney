@@ -1,0 +1,9 @@
+#HOME{
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

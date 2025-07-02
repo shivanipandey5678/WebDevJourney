@@ -3,7 +3,7 @@ import './App.css';
 
 function App() {
   let array=["react","css","javascript"];
-  const vari="hik"
+ 
   return (
     <div className="App">
         <ul>
