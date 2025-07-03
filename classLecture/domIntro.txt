@@ -28,3 +28,53 @@ npm create vite@latest my-app -- --template react
 cd my-app
 npm install
 npm run dev
+
+📄 Short Notes: .json() in JS
+Server se response JSON format wale string (text) mein aata hai, JavaScript object nahi.
+.json() method us string ko JavaScript object mein convert karta hai taaki hum uska use kar saken.
+Ye internally JSON.parse() use karta hai.
+
+
+//updater function k 2 task hota hai change state and cause rerender.
+//dom mei rerender k scene nhi tha refresh tha jo tha but i react if fetching function ki calling globally kar di ek update ke baad usstate rerender karega and file fir exicute honi start ho jaayegi ye chij fir fetch function ko call kar dega isse infinite loop start ho jaayega.
+//while writing or printing list in jsx item.map(()=>(
+    //never give {} react think it is js use only ()
+))
+
+
+---
+
+### 🖱️ **Mouse Events**
+
+* `click`
+* `dblclick`
+* `mousedown`
+* `mouseup`
+* `mousemove`
+* `mouseenter`
+* `mouseleave`
+* `mouseover`
+* `mouseout`
+* `contextmenu`
+
+---
+
+### ⌨️ **Keyboard Events**
+
+* `keydown`
+* `keyup`
+* `keypress` *(deprecated)*
+
+---
+
+### 🧾 **Form/Input Events**
+
+* `change`
+* `input`
+* `focus`
+* `blur`
+* `submit`
+
+document.GetElementById("root").children
+document.GetElementById("root").parentElement
+//if it is html collection u can use normal loop if it is ode u can use for each.

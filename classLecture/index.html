@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>React ToDo with Priority</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 30px;
+    }
+    input, select {
+      padding: 8px;
+      font-size: 14px;
+      margin: 5px;
+    }
+    button {
+      padding: 6px 10px;
+      margin: 5px;
+      cursor: pointer;
+    }
+    .task {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0;
+    }
+    .completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+    .priority-high { color: red; }
+    .priority-medium { color: orange; }
+    .priority-low { color: green; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    function App() {
+      const [task, setTask] = useState("");
+      const [priority, setPriority] = useState("Medium");
+      const [tasks, setTasks] = useState([]);
+      const [filter, setFilter] = useState("All");
+
+      const addTask = () => {
+        if (task.trim()) {
+          const newTask = {
+            text: task,
+            priority: priority,
+            completed: false
+          };
+          setTasks([...tasks, newTask]);
+          setTask("");
+          setPriority("Medium");
+        }
+      };
+
+      const deleteTask = (index) => {
+        const updated = tasks.filter((_, i) => i !== index);
+        setTasks(updated);
+      };
+
+      const toggleComplete = (index) => {
+        const updated = [...tasks];
+        updated[index].completed = !updated[index].completed;
+        setTasks(updated);
+      };
+
+      const filteredTasks = tasks.filter(task =>
+        filter === "All" ? true : task.priority === filter
+      );
+
+      return (
+        <div>
+          <h2>📝 Todo List with Priority</h2>
+
+          <input
+            type="text"
+            value={task}
+            onChange={(e) => setTask(e.target.value)}
+            placeholder="Enter task"
+          />
+
+          <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+            <option value="High">High 🔴</option>
+            <option value="Medium">Medium 🟠</option>
+            <option value="Low">Low 🟢</option>
+          </select>
+
+          <button onClick={addTask}>Add Task</button>
+
+          <hr />
+
+          <div>
+            <label>Filter by Priority: </label>
+            <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+              <option value="All">All</option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+
+          <ul style={{ listStyle: "none", padding: 0 }}>
+            {filteredTasks.map((task, index) => (
+              <li key={index} className="task">
+                <input
+                  type="checkbox"
+                  checked={task.completed}
+                  onChange={() => toggleComplete(index)}
+                />
+                <span className={`${task.completed ? "completed" : ""} priority-${task.priority.toLowerCase()}`}>
+                  {task.text} ({task.priority})
+                </span>
+                <button onClick={() => deleteTask(index)} style={{ backgroundColor: "red", color: "white" }}>
+                  ❌
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>

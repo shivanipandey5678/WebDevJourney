@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+   
+    <select  onchange="filterByCategory()" id="filter">
+        <option value="All">All</option>
+        <option value="men's clothing">men's clothing</option>
+        <option value="jewelery">jewelery</option>
+        <option value="electronics">electronics</option>
+        <option value="women's clothing">women's clothing</option>
+    </select>
+</body>
+</html>
+<script>
+   async function filterByCategory(){
+    const root=document.getElementById("root");
+     root.innerHTML=""
+      const resposne=await fetch("https://fakestoreapi.com/products");
+      const jsonResponse=await resposne.json();
+      console.log(jsonResponse);
+      const filter=document.getElementById("filter").value;
+      console.log(filter)
+      const updatedList=jsonResponse.filter((el,i)=>el.category==filter)
+      if(filter!=="All"){
+        updatedList.forEach((product,i)=>{
+       
+       const innerdiv=document.createElement("div");
+       innerdiv.innerHTML=`
+             <img src="${product.image}" style="width:100px"/>
+             <p>Title:${product.title}</p>
+             <p>Price:${product.price}</p>
+           `
+        root.append(innerdiv)
+})  
+      }
+    else{
+        jsonResponse.forEach((product,i)=>{
+       
+       const innerdiv=document.createElement("div");
+       innerdiv.innerHTML=`
+             <img src="${product.image}" style="width:100px"/>
+             <p>Title:${product.title}</p>
+             <p>Price:${product.price}</p>
+           `
+        root.append(innerdiv)
+}) 
+    }
+
+    }
+</script>

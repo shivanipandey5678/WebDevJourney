@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box" style="width: 100px; height: 100px;background-color: pink;">
+        <div  id="innerbox" style="width:50px; height:50px;background-color: brown;"></div>
+    </div>
+    <table border="1">
+        <tbody>
+          <tr><td> data 1</td></tr>
+          <tr><td> data 2</td></tr>
+          <tr><td> data 3</td></tr>
+          <tr><td> data 4</td></tr>
+          <tr><td> data 5</td></tr>
+          <tr><td> data 6</td></tr>
+          <tr><td>data 7</td></tr>
+          <tr><td>data 8</td></tr>
+          <tr><td>data 9</td></tr>
+          <tr><td>data 0</td></tr>
+        </tbody>
+      </table>
+
+      <input type="text" name="keycheck" id="keycheck" placeholder="key">
+      <input type="text" name="" id="colorchange" placeholder="color">
+      <p id="para_color">change color</p>
+
+      
+</body>
+</html>
+
+<script>
+    // let box=document.getElementById("box");
+    // isPink=true
+    // box.addEventListener("click",()=>{
+    //     box.style.backgroundColor=isPink?"yellow":"pink";
+    //     isPink=!isPink;
+    // })
+
+    document.getElementById("box").addEventListener("click",()=>alert("parent clicked"));
+    document.getElementById("innerbox").addEventListener("click",(e)=>{
+        alert("child clicked")
+        e.stopPropagation();
+    })
+
+    let list=document.getElementsByTagName("tr");
+    for(let i=0;i<list.length;i++){
+        list[i].style.backgroundColor=i%2!=0?"pink":"yellow"
+    }
+
+    let input= document.getElementById("keycheck");
+    input.addEventListener("keypress",(e)=>{
+        console.log(e.key)
+    })
+    
+    let para_color= document.getElementById("para_color");
+    let colorchangeInput=document.getElementById("colorchange");
+    colorchangeInput.addEventListener("onChange",()=>{
+        console.log(colorchangeInput.target.value);
+        para_color.style.backgroundColor=colorchangeInput.target.value
+    })
+
+</script>
+

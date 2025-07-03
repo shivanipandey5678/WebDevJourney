@@ -1,0 +1,19 @@
+Question-
+You are given a buggy React To-Do List component with the following issues:
+
+The "Add Task" button sometimes adds empty tasks.
+Completed tasks are not visually distinguishable (no strike-through).
+The "Delete Task" button deletes the wrong task occasionally.
+Your task is to debug and implement the following features:
+
+Ensure only non-empty tasks can be added.
+Tasks marked as completed should have a visible strike-through.
+Ensure the "Delete Task" button always removes the correct task.
+Write a short note explaining how you fixed each bug.   
+
+
+Answer-
+before adding task or event i will check  the value inside the input box if it length is greater than the after i will add it as a task.
+if the task is completed then i will update the state value and apply text decoration over it carefully.
+id you assign all event handler inside the same block it will catch the same btn whether it is click bt or delete btn .
+appart from this you can use key which help u to indentify the exact list which has changed.after that you can apply element.remove it will remove that element from dom.
