@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+    <div id="root"></div>
+
+</body>
+</html>
+<script type="text/babel">
+     const App = () => {
+         const [tasks,setTasks]=React.useState(["Buy milk", "Study React","gym"]);
+         const [task,setTask]=React.useState('')
+
+         function addTask (){
+              if(task.trim()){
+                setTasks([...tasks,task])
+                setTask('')
+              }
+         }
+
+         function clearAll(){
+            setTasks([])
+         }
+         return (
+            <>
+            <h1>Todos</h1>
+            <hr/>
+            <input type="text" value={task} onChange={(e)=>setTask(e.target.value)}/>
+            <button onClick={addTask}>Add Task</button>
+            <button onClick={clearAll}>Clear All</button>
+            <ul>
+
+             <ul>
+                {tasks.length==0?(<p> List is empty!!</p>):tasks.map((el,i)=>(<li key={i}>{el}</li>))}
+                
+            </ul>
+               
+            </ul>
+            </>
+
+         )
+}
+    const root=ReactDOM.createRoot(document.getElementById('root'));
+
+    root.render(<App/>)
+
+
+
+</script>
