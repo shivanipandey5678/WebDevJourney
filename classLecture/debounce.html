@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text"  id="searchInput" placeholder="searchInput" >
+</body>
+</html>
+
+<script>
+    let timer;
+    document.getElementById('searchInput').addEventListener('input',(e)=>{
+       searchMovie(e.target.value)
+       clearTimeout(timer)
+       timer=setTimeout(()=>{
+        console.log("inside setTimeout")
+       },3000)
+    });
+
+    function searchMovie(query){
+        console.log(query)
+
+    }
+</script>
+
+learning1: no matter how many time you put something it will trigger eventListener again and again and just bcoz we are claerning all the 
+preveas copy of settimeout it willonly print once and also if you are typing frequently it will kill the prev timeout same time also dont allow that 
+duration to complete so it will not print until you care typing if u stopped typing now wait for some time then once it will involke.
+
+
+throtling:you have to wait minum for itna delay fir se api request send karne ke liye

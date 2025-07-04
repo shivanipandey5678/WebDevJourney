@@ -78,3 +78,5 @@ Ye internally JSON.parse() use karta hai.
 document.GetElementById("root").children
 document.GetElementById("root").parentElement
 //if it is html collection u can use normal loop if it is ode u can use for each.
+
+//script mei type.babel likho or root bhai ReactDOM.craeteRoot se hi hoga.niche hi App banana hai.
