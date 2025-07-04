@@ -13,7 +13,8 @@ Write a short note explaining how you fixed each bug.
 
 
 Answer-
-before adding task or event i will check  the value inside the input box if it length is greater than the after i will add it as a task.
-if the task is completed then i will update the state value and apply text decoration over it carefully.
-id you assign all event handler inside the same block it will catch the same btn whether it is click bt or delete btn .
-appart from this you can use key which help u to indentify the exact list which has changed.after that you can apply element.remove it will remove that element from dom.
+i used usesTate for managing state of component internally.
+for css on completed task i use ternery operater and i gave classname dynamically .
+after checking from useState i gave classname.and apply css on class
+with the help of key i filter out the that task and delete and update thing .after updating thing with the help of setter function i set that as a main task.
+before adding checking is the input box is empty or not after trim.
