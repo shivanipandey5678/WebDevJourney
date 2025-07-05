@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+     <div  id="root">
+
+     </div>
+</body>
+</html>
+<script type="text/babel">
+      function App(){
+         const [emails,setEmails]=React.useState([{id:"",error:""}]);
+         function handleFieldAdding(){
+            setEmails([...emails,{id:"",error:""}])
+            console.log(emails)
+         }
+
+         const isValidEmail = (email) =>
+         /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+
+         function handleChange(i,changeEmail){
+            const emailListCopy=[...emails]
+            emailListCopy[i].id=changeEmail;
+            emailListCopy[i].error=isValidEmail(changeEmail)?"":"wrong email";
+            setEmails(emailListCopy)
+
+         }
+      return(
+            <> 
+              {emails.map((el,i)=>(
+                <div key={i} style={{margin:"8px"}}>
+                    <input type="email"  onChange={(e)=>{handleChange(i,e.target.value)}} placeholder={`Email field ${i+1}`} />
+                </div>
+              ))}
+           
+              <button onClick={handleFieldAdding}>Add Email Field</button>
+              <h2>Emails</h2>
+              {emails.map((object,i)=>(
+                <div key={i}>
+                    {!object.error?(<p style={{color:"green"}}>{object.id}</p>):(<p style={{color:"red"}}>Wrong Email</p>)}
+                    <p>{object.id && !object.error} </p>
+                </div>
+              ))}
+            </>
+        )
+
+     }
+     
+     const root=ReactDOM.createRoot(document.getElementById('root'));
+     root.render(<App/>)
+</script>
