@@ -1,0 +1,17 @@
+#cardWrapper{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 90vw;
+  margin: 40px auto;
+}
+
+#inputWrapper {
+  display: flex;
+  justify-content: center;
+}
+#inputWrapper input{
+ padding: 4px 8px ;
+ width: 30vw;
+ margin-top: 10px;
+}
