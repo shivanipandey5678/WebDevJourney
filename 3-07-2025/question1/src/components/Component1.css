@@ -1,0 +1,16 @@
+.innerWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 150px;
+ 
+}
+
+.innerWrapper p::first-letter{
+    font-size: x-large;
+    font-weight: 700;
+    color: rgb(220, 96, 96);
+}
+
+
+
