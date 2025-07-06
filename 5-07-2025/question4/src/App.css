@@ -1,0 +1,8 @@
+
+nav{
+  display: flex;
+  justify-content: space-evenly;
+  width: 100vw;
+  position: relative !important;
+  top: 0 !important;
+}
