@@ -1,18 +1,24 @@
-import { Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import PostDetails from './pages/PostDetails';
-import About from './pages/About';
 
-export default function App() {
-  return (
-    <div>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/post/:id" element={<PostDetails />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
+export default function PostDetails(){
+    const {id}=useParams();
+    const [post, setPost] = useState(null);
+
+    useEffect(()=>{
+        fetch(`https://dummyjson.com/posts/${id}`)
+        .then(res => res.json())
+        .then(data => setPost(data));
+    },[id])
+    if (!post) return <p>Loading...</p>;
+    return(
+        <>
+           <div>
+      <h2>{post.title}</h2>
+      <p>{post.body}</p>
+      <p><strong>Tags:</strong> {post.tags.join(', ')}</p>
     </div>
-  );
+        </>
+    )
 }
