@@ -80,3 +80,105 @@ document.GetElementById("root").parentElement
 //if it is html collection u can use normal loop if it is ode u can use for each.
 
 //script mei type.babel likho or root bhai ReactDOM.craeteRoot se hi hoga.niche hi App banana hai.
+
+Sure! Here's a **short and clear JWT notes** version:
+
+---
+
+### ✅ **JWT (JSON Web Token) – Notes**
+
+📦 **Structure**:
+
+```
+HEADER.PAYLOAD.SIGNATURE
+```
+
+---
+
+### 1️⃣ **Header** (Base64)
+
+```json
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+```
+
+---
+
+### 2️⃣ **Payload** (Base64)
+
+Contains user data like:
+
+```json
+{
+  "userId": "abc123",
+  "email": "abc@example.com",
+  "exp": 1712345678
+}
+```
+
+---
+
+### 3️⃣ **Signature**
+
+Used to verify token:
+
+```
+HMACSHA256(header + "." + payload, secret)
+```
+
+---
+
+### 🔐 **Why JWT?**
+
+* Securely pass user data
+* Used for authentication (login sessions)
+* Can be verified without DB lookup
+
+---
+
+Let me know if you want Hindi + Hinglish version too!
+
+Absolutely! Here's a clean **remember note** you can directly save in your notes:
+
+---
+
+### 🔐 JWT Authorization Header – Quick Reminder Note
+
+✅ **Always write this in Postman/Thunder Client header:**
+
+```
+Key: Authorization
+Value: Bearer <your_token>
+```
+
+📌 **"Bearer" is required** — if you skip it or spell it wrong (`beerer`), you’ll get:
+
+```
+Error: jwt must be provided
+```
+
+🧠 **Backend (Node.js/Express)**:
+
+* Use: `req.headers.authorization` (lowercase only ✅)
+* Even if the client sends `"Authorization"`, Express auto-converts it to lowercase.
+
+✅ So in backend:
+
+```js
+const authHeader = req.headers.authorization;
+const token = authHeader.split(' ')[1];
+```
+
+---
+
+📌 **Remember**:
+
+> Use **"Authorization"** (capital A) in the request.
+> Use **`authorization`** (small a) in the backend.
+
+---
+
+Let me know if you want this as a `.txt` or `.md` file to download too!
+
