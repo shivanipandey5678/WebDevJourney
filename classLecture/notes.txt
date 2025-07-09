@@ -182,3 +182,11 @@ const token = authHeader.split(' ')[1];
 
 Let me know if you want this as a `.txt` or `.md` file to download too!
 
+const dotenv = require('dotenv');
+dotenv.config();
+
+const apiUrl = process.env.API_URL; // use your actual variable name (no VITE_ prefix needed)
+console.log(apiUrl);
+const apiURL = import.meta.env.VITE_API_URL;
+console.log(apiURL);
+ Only variables prefixed with VITE_ are accessible in frontend.
