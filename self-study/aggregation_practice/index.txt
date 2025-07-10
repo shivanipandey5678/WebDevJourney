@@ -216,3 +216,7 @@ const checkAccess = (roles) => {
   
 
   if akele mt karna wo stuck kar dega request ko else always rakhna is code me issue hai.
+
+  if (req.user._id.toString() === searchedblog.author.toString()) {
+  // IDs are equal ✅
+}

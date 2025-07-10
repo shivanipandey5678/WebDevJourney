@@ -14,7 +14,7 @@ Router.get("/blogs",async(req,res)=>{
 })
 
 //create a new blog by author
-Router.post("/blogs",auth,checkAccess("author"),async(req,res)=>{
+Router.post("/blogs",auth,checkAccess(["author"]),async(req,res)=>{
     try {
         
         const newPost=req.body;
