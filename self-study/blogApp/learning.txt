@@ -1,0 +1,2 @@
+setUserData({ ...userData, [name]: value });
+The [] are used for dynamic object keys — this is called computed property names in JavaScript.
