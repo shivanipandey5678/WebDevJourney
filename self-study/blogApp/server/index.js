@@ -2,7 +2,8 @@ const dotenv=require('dotenv');
 const express=require('express');
 dotenv.config();
 const app=express();
-const userController=require('./controllers/user.controller.js')
+const userController=require('./controllers/user.controller.js');
+const blogController=require('./controllers/blog.controller.js')
 
 const dbConnect=require('./config/db.js')
 
@@ -14,7 +15,7 @@ app.get("/health-check",(req,res)=>{
 });
 
 app.use("/users",userController);
-
+app.use("/blogs",blogController);
 
 
 app.listen(process.env.PORT,async()=>{

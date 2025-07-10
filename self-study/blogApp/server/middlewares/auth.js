@@ -21,8 +21,10 @@ const auth=async(req,res,next)=>{
             return res.status(401).json({message:"something went wrong!!"})
         }
         console.log('6')
-        req.user=decoded;
-        console.log('7')
+        console.log("decoded",decoded,"at auth.js line 24")
+        req.user=await User.findById(decoded.id);
+        console.log("req.user", req.user)
+        // console.log('7')
         next()
     
     } catch (error) {
@@ -31,3 +33,5 @@ const auth=async(req,res,next)=>{
 }
 
 module.exports=auth;
+
+//these console are part of debugging!!

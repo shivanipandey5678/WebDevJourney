@@ -188,3 +188,31 @@ tag:[Number|String] and craetedAt:Date
 | `404` | ❌ Not found                |
 | `409` | ❌ Already exists           |
 | `500` | ❌ Server crash/error       |
+
+
+ if(req.user.role=='admin' || req.user._id.equals(searchedblog.author))
+
+object ref share karta hai to == nahi
+
+
+const checkAccess = (roles) => {
+  console.log("checkAccess1")
+    return (req, res, next) => {
+      console.log(req.user)
+      console.log("checkAccess2")
+      if (req.user) {
+        if(roles.includes(req.user.role)){
+          // console.log(roles.includes(req.user.role))
+          console.log("checkAccess3")
+          next();
+        }
+       
+      } else {
+        console.log("checkAccess4")
+        return res.status(403).json({ message: "Access denied" });
+      }
+    };
+  };
+  
+
+  if akele mt karna wo stuck kar dega request ko else always rakhna is code me issue hai.

@@ -35,8 +35,10 @@ Router.post("/login",async(req,res)=>{
         if(!isValidPassword){
             return res.status(401).json({message:"wrong password!!"})
         }
-        const accessToken=jwt.sign({username:existUser.username,password:existUser.password,id:existUser._id,role:existUser.role},process.env.accessTokenKey,{expiresIn:'30s'});
-        const refreshToken=jwt.sign({username:existUser.username,password:existUser.password,id:existUser._id,role:existUser.role},process.env.REFRESH_KEY,{expiresIn:'1h'});
+        console.log("existUser at user controller at 38",existUser )
+        
+        const accessToken=jwt.sign({username:existUser.username,password:existUser.password,id:existUser._id},process.env.accessTokenKey,{expiresIn:'30m'});
+        const refreshToken=jwt.sign({username:existUser.username,password:existUser.password,id:existUser._id},process.env.REFRESH_KEY,{expiresIn:'1h'});
         return res.status(200).json({message:"login ho gya bhaii!!",accessToken,refreshToken})
     } catch (error) {
         return res.status(500).send(error)
@@ -45,7 +47,7 @@ Router.post("/login",async(req,res)=>{
 
 
 //all userlist only for admin
-Router.get('/users',auth,checkAccess('admin'),async(req,res)=>{
+Router.get('/users',async(req,res)=>{
      try {
         const allUsers=await User.find({});
         return res.status(200).json({message:"fetching successfully!!",allUsers});
@@ -62,8 +64,8 @@ Router.post("/generateAccessToken",generateAccessToken=async(req,res)=>{
         if(!decoded){
             return res.status(401).json({message:"something went wrong decoded!!"})
         }
-        const {username,password}=await User.findById(decoded.id);
-        const accessToken=jwt.sign({username,password},process.env.accessTokenKey,{expiresIn:'2m'});
+        const {username,password,id}=await User.findById(decoded.id);
+        const accessToken=jwt.sign({username,password,id},process.env.accessTokenKey,{expiresIn:'30m'});
         return res.status(200).json({message:"new accesstoken created!",accessToken})
 
     } catch (error) {
