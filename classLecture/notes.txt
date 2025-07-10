@@ -190,3 +190,315 @@ console.log(apiUrl);
 const apiURL = import.meta.env.VITE_API_URL;
 console.log(apiURL);
  Only variables prefixed with VITE_ are accessible in frontend.
+
+ ### ✅ `$project` MongoDB Aggregation Stage
+
+`$project` tab use hota hai jab **tum output document mein sirf specific fields dikhana chahte ho** — ya naye fields banana chahte ho, ya existing fields ko modify/rename karna chahte ho.
+
+---
+
+### 🔧 **Use Cases of `$project`**:
+
+#### 🔹 **1. Sirf kuch fields dikhani hain:**
+
+```js
+[
+  {
+    $project: {
+      name: 1,
+      fees: 1
+    }
+  }
+]
+```
+
+👉 Output mein sirf `name` aur `fees` field aayenge. Baaki sab hat jaayenge.
+`1` ka matlab "include this field".
+
+---
+
+#### 🔹 **2. Kisi field ko **hide** karna hai:**
+
+```js
+[
+  {
+    $project: {
+      password: 0
+    }
+  }
+]
+```
+
+👉 Bas `password` field ko hata diya. Baaki sab fields dikhengi.
+
+---
+
+#### 🔹 **3. Naya field banana / calculate karna:**
+
+```js
+[
+  {
+    $project: {
+      name: 1,
+      doubledFees: { $multiply: ["$fees", 2] }
+    }
+  }
+]
+```
+
+👉 Naya field `doubledFees` ban gaya, jo `fees × 2` hai.
+
+---
+
+#### 🔹 **4. Nested fields access karna:**
+
+```js
+[
+  {
+    $project: {
+      "doctor.name": 1,
+      "doctor.speciality": 1
+    }
+  }
+]
+```
+
+👉 Sirf nested object ke andar ke fields show karne ke liye.
+
+---
+
+### 📌 Note:
+
+* `$project` usually aggregation pipeline ke **last stage ya middle** mein aata hai.
+* Yeh sirf **document ko shape** karne ke liye hota hai, data filter karne ke liye nahi. (uske liye `$match` use karo)
+
+---
+
+Agar tumhara use case ho to batao, uske according main exact `$project` ka example bana dungi 💡
+
+
+Great! Here's a full progression of **MongoDB Aggregation questions** — from easy to super-duper complex — based on your doctors dataset:
+
+---
+
+### 🟢 **Easy Level**
+
+1. **Find all available doctors**
+
+```js
+db.doctors.aggregate([
+  { $match: { available: true } }
+])
+```
+
+2. **Get only the name and speciality of all doctors**
+
+```js
+db.doctors.aggregate([
+  { $project: { name: 1, speciality: 1, _id: 0 } }
+])
+```
+
+3. **Count total number of doctors**
+
+```js
+db.doctors.aggregate([
+  { $count: "totalDoctors" }
+])
+```
+
+4. **List all unique specialities**
+
+```js
+db.doctors.aggregate([
+  { $group: { _id: "$speciality" } }
+])
+```
+
+---
+
+### 🟡 **Medium Level**
+
+5. **Find average consultation fees of all doctors**
+
+```js
+db.doctors.aggregate([
+  { $group: { _id: null, averageFees: { $avg: "$fees" } } }
+])
+```
+
+6. **Group doctors by speciality and get count per speciality**
+
+```js
+db.doctors.aggregate([
+  { $group: { _id: "$speciality", count: { $sum: 1 } } }
+])
+```
+
+7. **Find doctors with more than 3 years experience**
+
+```js
+db.doctors.aggregate([
+  {
+    $match: {
+      experience: { $regex: /^[4-9]|[1-9][0-9]/ }  // "4 Year", "5 Year", "10 Year", etc.
+    }
+  }
+])
+```
+
+8. **Find the maximum and minimum fees charged**
+
+```js
+db.doctors.aggregate([
+  {
+    $group: {
+      _id: null,
+      maxFees: { $max: "$fees" },
+      minFees: { $min: "$fees" }
+    }
+  }
+])
+```
+
+---
+
+### 🔵 **Advanced Level**
+
+9. **List doctors sorted by experience (converted to number) in descending order**
+
+```js
+db.doctors.aggregate([
+  {
+    $addFields: {
+      expNum: { $toInt: { $arrayElemAt: [{ $split: ["$experience", " "] }, 0] } }
+    }
+  },
+  { $sort: { expNum: -1 } },
+  { $project: { name: 1, speciality: 1, expNum: 1 } }
+])
+```
+
+10. **For each speciality, get average fees and number of available doctors**
+
+```js
+db.doctors.aggregate([
+  { $match: { available: true } },
+  {
+    $group: {
+      _id: "$speciality",
+      avgFee: { $avg: "$fees" },
+      countAvailable: { $sum: 1 }
+    }
+  }
+])
+```
+
+11. **Find doctors who charge below average fees (compared to all)**
+
+```js
+db.doctors.aggregate([
+  {
+    $facet: {
+      all: [
+        { $group: { _id: null, avgFees: { $avg: "$fees" } } }
+      ],
+      doctors: [
+        { $project: { name: 1, fees: 1 } }
+      ]
+    }
+  },
+  {
+    $project: {
+      avgFees: { $arrayElemAt: ["$all.avgFees", 0] },
+      doctors: 1
+    }
+  },
+  {
+    $project: {
+      doctors: {
+        $filter: {
+          input: "$doctors",
+          as: "doc",
+          cond: { $lt: ["$$doc.fees", "$avgFees"] }
+        }
+      }
+    }
+  },
+  { $unwind: "$doctors" },
+  { $replaceRoot: { newRoot: "$doctors" } }
+])
+```
+
+---
+
+### 🔴 **Super-Duper Complex Level**
+
+12. **Get top 2 highest-paid available doctors per speciality**
+
+```js
+db.doctors.aggregate([
+  { $match: { available: true } },
+  {
+    $set: { speciality: { $ifNull: ["$speciality", "Unknown"] } }
+  },
+  {
+    $sort: { speciality: 1, fees: -1 }
+  },
+  {
+    $group: {
+      _id: "$speciality",
+      topDoctors: { $push: "$$ROOT" }
+    }
+  },
+  {
+    $project: {
+      topDoctors: { $slice: ["$topDoctors", 2] }
+    }
+  },
+  { $unwind: "$topDoctors" },
+  { $replaceRoot: { newRoot: "$topDoctors" } }
+])
+```
+
+13. **Create a dashboard-style result showing:**
+
+* total doctors
+* average experience (in years)
+* highest fee charged
+* number of available doctors
+
+```js
+db.doctors.aggregate([
+  {
+    $addFields: {
+      experienceYear: { $toInt: { $arrayElemAt: [{ $split: ["$experience", " "] }, 0] } }
+    }
+  },
+  {
+    $group: {
+      _id: null,
+      totalDoctors: { $sum: 1 },
+      avgExperience: { $avg: "$experienceYear" },
+      maxFees: { $max: "$fees" },
+      availableCount: {
+        $sum: {
+          $cond: [{ $eq: ["$available", true] }, 1, 0]
+        }
+      }
+    }
+  }
+])
+```
+
+---
+
+Want me to give a **quiz-style challenge** or convert this into **practice JSON + expected output**?
+
+db.doctors.aggregate([
+  { $project: { name: 1, speciality: 1, _id: 0 } }
+])
+
+$project stage se hum decide karte hain:
+➤ Kaunse fields output mein dikhayein (1)
+➤ Kaunse fields hata dein (0)

@@ -1,0 +1,190 @@
+first[
+  {
+    $project:{
+      image:1,_id:0
+},
+  },{
+
+    $count:"totalimages"
+}
+]
+
+2....
+[
+  {
+    $count:'totalDoctors'
+  }
+]
+
+3......List all unique specialities
+
+[
+  {
+    $group:{
+      _id:null,average:{
+       $avg:'$fees' 
+      }
+        }
+  }
+]
+
+4.........
+[
+  {
+    $group:{
+      _id:'$speciality',count:{$sum:1}
+    },
+  }
+]
+
+5/..............
+[
+  {
+    $group:{
+      _id:'$speciality',counting:{$sum:1}
+    }
+  }
+]
+
+6................
+[
+  {
+    $match:{
+      fees:{
+        $lt:30
+          }
+    }
+  },{
+    $group:{
+      _id:'$speciality',average:{$avg:'$fees'}
+    }
+  }
+ 
+]
+
+7.............
+[
+  {
+    $match:{
+      fees:{
+        $lt:30
+          }
+    }
+  },{
+    $group:{
+      _id:'$speciality',average:{$avg:'$fees'}
+    }
+  },{
+    $count:'total'
+  }
+ 
+]
+
+8.................
+[
+  {
+    $group:{
+      _id:null,maxfees:{$max:'$fees'},minfees:{$min:'$fees'}
+}
+  }
+]
+
+
+9................
+[
+  {
+    $group:{
+      _id:'$experience',
+      count:{$sum:1}
+}
+  },
+  {
+    $sort:{count:1}
+  },
+  {
+    $limit:3
+  }
+]
+
+10.......................
+✅ Jab use karo:
+Jab do collections ka relation ho (like foreign key)
+
+Jab tumhe nested/related data chahiye ek hi result mein
+
+🧨 What is $unwind?
+$unwind ek aggregation stage hai jo array ko tod deta hai —
+Har array element ke liye ek naya document banata hai
+
+-----------------revision-----------------
+
+const db = mongoose.connection;
+
+// ✅ Successful connection
+db.once('open', () => {
+  console.log('✅ MongoDB connected successfully!');
+});
+
+// ❌ Error while connecting
+db.on('error', (err) => {
+  console.error('❌ MongoDB connection error:', err);
+});
+
+db.users.find({
+  $and: [
+    { role: "user" },
+    { age: { $gt: 18 } }
+  ]
+})
+
+
+const mongoose = require('mongoose');
+
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, "❌ Name is required"],
+    minlength: [3, "❌ Name must be at least 3 characters"],
+  },
+  age: {
+    type: Number,
+    min: [18, "❌ Age must be at least 18"],
+    required: [true, "❌ Age is required"],
+  },
+  email: {
+    type: String,
+    required: [true, "❌ Email is required"],
+    unique: true
+  },
+  role: {
+    type: String,
+    enum: {
+      values: ['user', 'admin'],
+      message: '❌ Role must be either user or admin'
+    },
+    default: 'user'
+  }
+});
+
+tag:[Number|String] and craetedAt:Date
+
+
+| Code  | Meaning                                                       |
+| ----- | ------------------------------------------------------------- |
+| `400` | Bad Request – galat/missing data                              |
+| `401` | Unauthorized – login ya token missing/invalid                 |
+| `403` | Forbidden – access allowed nahi hai                           |
+| `404` | Not Found – resource nahi mila                                |
+| `409` | Conflict – duplicate ya invalid action (e.g., already exists) |
+
+
+| Code  | Use Case                   |
+| ----- | -------------------------- |
+| `200` | ✅ GET, PUT success         |
+| `201` | ✅ POST success             |
+| `400` | ❌ Bad/missing request data |
+| `401` | ❌ Not logged in            |
+| `403` | ❌ Not allowed              |
+| `404` | ❌ Not found                |
+| `409` | ❌ Already exists           |
+| `500` | ❌ Server crash/error       |
