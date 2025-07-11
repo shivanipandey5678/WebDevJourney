@@ -14,9 +14,9 @@ Router.post("/register",async(req,res)=>{
             return res.status(400).json({message:"user name taken!"})
         }
         const hashPassword= await bcrypt.hash(password,10);
-        existUser=new User({username,password:hashPassword,role});
-        const savedUser = await existUser.save();
-        res.status(200).json({message:"usersaved!!",username:savedUser.name,role:savedUser.role});
+        const newuser=new User({username,password:hashPassword,role});
+        const savedUser = await newuser.save();
+        res.status(201).json({message:"usersaved!!",username:savedUser.name,role:savedUser.role,id:savedUser._id});
 
         
     } catch (error) {
@@ -39,7 +39,7 @@ Router.post("/login",async(req,res)=>{
         
         const accessToken=jwt.sign({username:existUser.username,password:existUser.password,id:existUser._id},process.env.accessTokenKey,{expiresIn:'30m'});
         const refreshToken=jwt.sign({username:existUser.username,password:existUser.password,id:existUser._id},process.env.REFRESH_KEY,{expiresIn:'1h'});
-        return res.status(200).json({message:"login ho gya bhaii!!",accessToken,refreshToken})
+        return res.status(200).json({message:"login ho gya bhaii!!",accessToken,refreshToken,id:existUser._id})
     } catch (error) {
         return res.status(500).send(error)
     }
