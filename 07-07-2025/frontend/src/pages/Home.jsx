@@ -1,12 +1,12 @@
-import React, { useEffect, useState ,useContext} from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { AuthContext } from '../context/AuthProvider';
 import axios from 'axios';
 import BookCard from '../components/BookCard';
 const Home = () => {
- 
+
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const {setAuthBooks,authBooks}=useContext(AuthContext)
+  const { setAuthBooks, authBooks } = useContext(AuthContext)
   useEffect(() => {
 
     async function fetchBooks() {
@@ -31,12 +31,12 @@ const Home = () => {
   if (loading) return <p className="text-center p-4">Loading books...</p>;
   if (error) return <p className="text-center p-4 text-red-500">Error loading books. Please try again.</p>;
   return (
-    
+
     authBooks && <div className='flex justify-center flex-col '>
       {
-       authBooks.map((book,i)=>(
-        <BookCard {...book} key={book._id}/>
-       ))
+        authBooks.map((book, i) => (
+          <BookCard {...book} key={book._id} />
+        ))
       }
     </div>
   )

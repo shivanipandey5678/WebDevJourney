@@ -1,4 +1,4 @@
-import React, { useState,useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthProvider';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +8,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const {setUserData,setIsAuth}=useContext(AuthContext)
+    const { setUserData, setIsAuth } = useContext(AuthContext)
     const handleSubmit = () => {
 
         if (email.trim() == "" || password.trim() == "") {
@@ -16,13 +16,13 @@ const Login = () => {
         }
         const userData = { email, password };
         async function register(req, res) {
-           const response= await axios.post("http://localhost:8099/api/auth/login", userData, {
+            const response = await axios.post("http://localhost:8099/api/auth/login", userData, {
                 withCredentials: true
-              });
-              
+            });
+
             if (response.status == 200) {
                 setIsAuth(true)
-               
+
                 setUserData(response.data.userId)
                 setEmail(' ')
                 setPassword(' ')
@@ -47,7 +47,7 @@ const Login = () => {
                 {error && <p className='text-red-500 text-center'>{error}</p>}
                 <input type="email" name="email" id="email" value={email} onChange={(e) => { setEmail(e.target.value) }} className='px-4 py-2 rounded border-2  border-gray-300 w-full' placeholder='Enter your email' />
                 <input type="password" name="password" id="password" value={password} onChange={(e) => { setPassword(e.target.value) }} className='px-4 py-2 rounded border-2  border-gray-300 w-full' placeholder='Enter your password' />
-                <button onClick={handleSubmit} className='px-4 py-2 rounded border-2  border-gray-300 w-full hover:bg-blue-600 hover:text-white text-semibold hover:border-white' >Submit</button>
+                <button onClick={handleSubmit} className='px-4 py-2 rounded border-2  border-gray-300 w-full hover:bg-red-500 hover:text-white text-semibold hover:border-white' >Submit</button>
             </div>
         </div>
     )

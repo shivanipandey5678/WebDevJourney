@@ -57,7 +57,7 @@ const login = async (req, res) => {
             sameSite: 'lax',
             maxAge: 2 * 60 * 60 * 1000
         })
-        res.status(200).json({ message: "login successfully" ,userId:{id: existedUser._id,email: existedUser.email}});
+        res.status(200).json({ message: "login successfully", userId: { id: existedUser._id, email: existedUser.email } });
     } catch (error) {
         return res.status(500).json({ message: error.message })
     }
@@ -98,8 +98,8 @@ const authMe = async (req, res) => {
 
 Router.post('/register', register);
 Router.post('/login', login);
-Router.patch('/logout', Auth,logout);
-Router.get('/me',Auth, authMe);
+Router.patch('/logout', logout);
+Router.get('/me', Auth, authMe);
 Router.get('/me/:id', Auth, fetchMyInfo);
 
 module.exports = Router;

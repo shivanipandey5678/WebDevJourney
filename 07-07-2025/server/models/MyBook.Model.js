@@ -8,16 +8,19 @@ const mybookSchema=new mongoose.Schema({
     bookId:{
         type:mongoose.Schema.Types.ObjectId,
          required:true,
-        ref:'Book'
+        
+          ref:'Book'
     },
     status:{
         type:String,
-        enum:["Want to Read","Currently Reading","Read"]
+        enum:["Want to Read","Currently Reading","Read"],
+       
     },
     rating:{
         type:Number,
         min:[1,"Rating must be at least 1"],
-        max:[5,"Rating cannot be more than 5"]
+        max:[5,"Rating cannot be more than 5"],
+        default:4
     }
 })
 
